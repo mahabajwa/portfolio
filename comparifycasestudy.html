@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comparify — Case Study | Maha Abid</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream: '#faf9f6',
+            softGold: '#c9a87c',
+            softGoldLight: '#e8d5b8',
+            softGoldDark: '#a8895f',
+            sage: '#a3b899',
+            sageLight: '#d4e2cd',
+            textDark: '#2d2d2d',
+            textMuted: '#6b6b6b',
+            textLight: '#9a9a9a',
+            borderSoft: '#e8e4de',
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            serif: ['Playfair Display', 'serif'],
+            display: ['Space Grotesk', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{background:#ebe8df;color:#2d2d2d;font-family:'Inter',sans-serif}
+    .tag{display:inline-block;padding:4px 14px;border-radius:20px;font-size:12px;font-weight:500}
+    .section-block{background:rgba(255,255,255,.7);border:1px solid #e8e4de;border-radius:16px;padding:2rem}
+  </style>
+</head>
+<body>
+
+  <!-- ✏️ EDIT: Back link to your main portfolio page -->
+  <div class="max-w-3xl mx-auto px-6 pt-10">
+    <a href="index.html" class="inline-flex items-center gap-2 text-sm font-medium text-textMuted hover:text-softGold transition-colors">
+      <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Portfolio
+    </a>
+  </div>
+
+  <!-- ═══════════════ HEADER ═══════════════ -->
+  <!-- ✏️ EDIT: Project name, one-line summary, and tags -->
+  <header class="max-w-3xl mx-auto px-6 pt-10 pb-16">
+    <span class="text-xs font-medium uppercase tracking-[.2em] text-softGold">Case Study</span>
+    <h1 class="font-serif text-4xl md:text-5xl font-bold text-textDark mt-3 mb-4">Comparify</h1>
+    <p class="text-textMuted text-lg leading-relaxed mb-6">
+      A smart shopping price comparison platform — designed to help users find the best deals without visiting multiple stores.
+    </p>
+    <div class="flex flex-wrap gap-2">
+      <span class="tag bg-softGoldLight/40 text-softGoldDark">Figma</span>
+      <span class="tag bg-sageLight/60 text-sage">UI Design</span>
+      <span class="tag bg-softGoldLight/40 text-softGoldDark">Final Year Project</span>
+    </div>
+  </header>
+
+  <!-- ═══════════════ HERO IMAGE ═══════════════ -->
+  <!-- ✏️ EDIT: Replace with your main project screenshot -->
+  <div class="max-w-3xl mx-auto px-6 mb-16">
+    <img src="images/comparifyhero.PNG" alt="Comparify main screen" class="w-full rounded-2xl" style="box-shadow:0 20px 60px rgba(0,0,0,.1)">
+  </div>
+
+  <!-- ═══════════════ THE PROBLEM ═══════════════ -->
+  <!-- ✏️ EDIT: What problem were you solving? Who is it for? -->
+  <section class="max-w-3xl mx-auto px-6 mb-12">
+    <div class="section-block">
+      <h2 class="font-display text-xl font-semibold text-textDark mb-4">The Problem</h2>
+      <p class="text-textMuted leading-relaxed">
+        Online shoppers often have to open many different websites just to check the price of the same product, which takes a lot of time. On top of that, users don't always know the exact name of a product to search for it by text — sometimes they've only seen a photo of it, with no easy way to find where to buy it or compare its price.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══════════════ THE PROCESS ═══════════════ -->
+  <!-- ✏️ EDIT: How did you approach the design? What steps did you take? -->
+  <section class="max-w-3xl mx-auto px-6 mb-12">
+    <div class="section-block">
+      <h2 class="font-display text-xl font-semibold text-textDark mb-4">My Process</h2>
+      <p class="text-textMuted leading-relaxed mb-4">
+      I started by thinking about how a user would search for a product and what they would want to see when comparing prices. I planned the main steps: choose a category, search a product by photo or text, view results from multiple stores, and compare prices in one place. After building the platform, I documented the full design in Figma, mapping out each screen and how they connect.
+      </p>
+      <!-- ✏️ EDIT: Add process step images if you have them (wireframes, sketches) -->
+      <img src="images/comparifycategory.PNG" alt="Design process" class="w-full rounded-xl mt-4">
+      <img src="images/comparifysearch.PNG" alt="Design process" class="w-full rounded-xl mt-4">
+      <img src="images/comparifyresult.PNG" alt="Design process" class="w-full rounded-xl mt-4">
+    </div>
+  </section>
+
+  <!-- ═══════════════ DESIGN DECISIONS ═══════════════ -->
+  <!-- ✏️ EDIT: Why did you choose these colors, layout, fonts? -->
+  <section class="max-w-3xl mx-auto px-6 mb-12">
+    <div class="section-block">
+      <h2 class="font-display text-xl font-semibold text-textDark mb-4">Design Decisions</h2>
+      <p class="text-textMuted leading-relaxed">
+        I kept the results page simple, with clear sorting options (High to Low, Low to High, and Top Rated), so users could compare products quickly without feeling overwhelmed. I used clean, minimal colors so the focus stayed on the products and prices, not on the design itself.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══════════════ FINAL SCREENS ═══════════════ -->
+  <!-- ✏️ EDIT: Add your final polished screens here -->
+  <section class="max-w-3xl mx-auto px-6 mb-12">
+    <h2 class="font-display text-xl font-semibold text-textDark mb-6">Final Screens</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <img src="images/comparifyresult.png" alt="Screen 1" class="w-full rounded-xl">
+      <img src="images/comparifysignin.png" alt="Screen 2" class="w-full rounded-xl">
+      <img src="images/comparifyfav.png" alt="Screen 2" class="w-full rounded-xl">
+    </div>
+  </section>
+
+  <!-- ═══════════════ OUTCOME / LEARNING ═══════════════ -->
+  <!-- ✏️ EDIT: What was the result? What did you learn? -->
+  <section class="max-w-3xl mx-auto px-6 mb-16">
+    <div class="section-block">
+      <h2 class="font-display text-xl font-semibold text-textDark mb-4">Outcome & Learning</h2>
+      <p class="text-textMuted leading-relaxed">
+        Working on Comparify taught me how to think from a user's point of view especially when designing the results page, which needed to show a lot of information (prices, ratings, sorting) without feeling cluttered. I also learned how to plan a project from start to finish, from mapping out the user flow to documenting every screen clearly. This project helped me understand that good design isn't just about how something looks, but how easily a user can get what they need.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══════════════ PROTOTYPE LINK ═══════════════ -->
+  <!-- ✏️ EDIT: Replace with your actual Figma link -->
+  <div class="max-w-3xl mx-auto px-6 pb-24 text-center">
+    <a href="https://www.figma.com/design/OiJBXjoi3sCQ4gkpfgxokE/Untitled?node-id=194-215&t=KP3iSdliew9Q1U7X-1" target="_blank" class="inline-flex items-center gap-2 px-7 py-3.5 bg-textDark text-white text-sm font-medium rounded-full hover:bg-softGold transition-colors">
+      <i data-lucide="external-link" class="w-4 h-4"></i> View Interactive Prototype
+    </a>
+  </div>
+
+  <script>
+    lucide.createIcons();
+  </script>
+
+</body>
+</html>

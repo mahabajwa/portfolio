@@ -1,678 +1,416 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Maha Abid — Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/ScrollTrigger.min.js"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            cream: '#faf9f6',
-            warmWhite: '#ffffff',
-            softGold: '#c9a87c',
-            softGoldLight: '#e8d5b8',
-            softGoldDark: '#a8895f',
-            sage: '#a3b899',
-            sageLight: '#d4e2cd',
-            mauve: '#c4a7c7',
-            mauveLight: '#e4d5e5',
-            blush: '#e8c4c4',
-            blushLight: '#f5e0e0',
-            textDark: '#2d2d2d',
-            textMuted: '#6b6b6b',
-            textLight: '#9a9a9a',
-            borderSoft: '#e8e4de',
-          },
-          fontFamily: {
-            sans: ['Inter', 'sans-serif'],
-            serif: ['Playfair Display', 'serif'],
-            display: ['Space Grotesk', 'sans-serif'],
-          }
-        }
-      }
-    }
-  </script>
-  <style>
-    *{margin:0;padding:0;box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{background:#ebe8df;color:#2d2d2d;font-family:'Inter',sans-serif;overflow-x:hidden}
-    ::selection{background:#c9a87c;color:#fff}
-    ::-webkit-scrollbar{width:5px}
-    ::-webkit-scrollbar-track{background:#faf9f6}
-    ::-webkit-scrollbar-thumb{background:#c9a87c;border-radius:10px}
-
-    .cursor-blink::after{content:'|';color:#c9a87c;animation:blink 1s step-end infinite;font-weight:300;margin-left:2px}
-    @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
-
-    .float-shape{position:absolute;border-radius:50%;filter:blur(60px);opacity:.3;pointer-events:none}
-
-    .hero-img-wrapper{position:relative}
-    .hero-img-wrapper::before{content:'';position:absolute;inset:-8px;border-radius:50%;border:2px dashed #c9a87c;animation:spinSlow 20s linear infinite}
-    @keyframes spinSlow{to{transform:rotate(360deg)}}
-
-    .card-hover{transition:all .5s cubic-bezier(.23,1,.32,1)}
-    .card-hover:hover{transform:translateY(-8px);box-shadow:0 20px 60px rgba(201,168,124,.15)}
-
-    .tag{display:inline-block;padding:4px 14px;border-radius:20px;font-size:12px;font-weight:500;letter-spacing:.02em}
-
-    .nav-link{position:relative;padding-bottom:2px}
-    .nav-link::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1.5px;background:#c9a87c;transition:width .4s ease}
-    .nav-link:hover::after{width:100%}
-
-    .section-reveal{opacity:0;transform:translateY(40px)}
-
-    .skill-bar-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,#c9a87c,#a3b899);width:0;transition:width 1.5s cubic-bezier(.23,1,.32,1)}
-
-    .blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.2;animation:blobMove 8s ease-in-out infinite alternate}
-    @keyframes blobMove{0%{transform:translate(0,0) scale(1)}100%{transform:translate(30px,-20px) scale(1.1)}}
-
-    .project-img{overflow:hidden;border-radius:12px 12px 0 0}
-    .project-img img{transition:transform .7s cubic-bezier(.23,1,.32,1)}
-    .card-hover:hover .project-img img{transform:scale(1.05)}
-
-    .contact-input{background:transparent;border:1.5px solid #e8e4de;border-radius:12px;padding:14px 18px;font-family:'Inter',sans-serif;font-size:14px;color:#2d2d2d;transition:all .3s ease;width:100%;outline:none}
-    .contact-input:focus{border-color:#c9a87c;box-shadow:0 0 0 3px rgba(201,168,124,.1)}
-    .contact-input::placeholder{color:#9a9a9a}
-
-    .toast{position:fixed;bottom:30px;right:30px;background:#2d2d2d;color:#fff;padding:16px 24px;border-radius:12px;font-size:14px;z-index:9999;transform:translateY(100px);opacity:0;transition:all .4s ease;display:flex;align-items:center;gap:10px}
-    .toast.show{transform:translateY(0);opacity:1}
-     .code-cursor{display:inline-block;width:2px;height:1.1em;background:#c9a87c;vertical-align:text-bottom;animation:cursorBlink 1s step-end infinite}
-@keyframes cursorBlink{0%,100%{opacity:1}50%{opacity:0}}
-.code-line{opacity:0;transform:translateX(-10px)}
-
-
-    @media(max-width:768px){
-      .hero-img-wrapper::before{display:none}
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maha Abid — UI/UX Portfolio</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✏️</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/ScrollTrigger.min.js"></script>
+<script>
+tailwind.config={theme:{extend:{colors:{cream:'#faf9f6',softGold:'#c9a87c',softGoldLight:'#e8d5b8',softGoldDark:'#a8895f',sage:'#a3b899',sageLight:'#d4e2cd',mauve:'#c4a7c7',mauveLight:'#e4d5e5',blush:'#e8c4c4',blushLight:'#f5e0e0',textDark:'#2d2d2d',textMuted:'#6b6b6b',textLight:'#9a9a9a',borderSoft:'#e8e4de'},fontFamily:{sans:['Inter','sans-serif'],serif:['Playfair Display','serif'],display:['Space Grotesk','sans-serif']}}}}
+</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{background:#faf9f6;color:#2d2d2d;font-family:'Inter',sans-serif;overflow-x:hidden}
+::selection{background:#c9a87c;color:#fff}::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:#faf9f6}::-webkit-scrollbar-thumb{background:#c9a87c;border-radius:10px}
+.cursor-blink::after{content:'|';color:#c9a87c;animation:blink 1s step-end infinite;font-weight:300;margin-left:2px}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.card-hover{transition:all .5s cubic-bezier(.23,1,.32,1)}.card-hover:hover{transform:translateY(-8px);box-shadow:0 20px 60px rgba(201,168,124,.15)}
+.tag{display:inline-block;padding:4px 14px;border-radius:20px;font-size:12px;font-weight:500}
+.nav-link{position:relative;padding-bottom:2px}.nav-link::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1.5px;background:#c9a87c;transition:width .4s ease}.nav-link:hover::after{width:100%}
+.section-reveal{opacity:0;transform:translateY(40px)}
+.skill-bar-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,#c9a87c,#a3b899);width:0;transition:width 1.5s cubic-bezier(.23,1,.32,1)}
+.blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.2;animation:blobMove 8s ease-in-out infinite alternate;pointer-events:none}
+@keyframes blobMove{0%{transform:translate(0,0) scale(1)}100%{transform:translate(30px,-20px) scale(1.1)}}
+.project-img{overflow:hidden;border-radius:12px 12px 0 0}.project-img img{transition:transform .7s cubic-bezier(.23,1,.32,1)}.card-hover:hover .project-img img{transform:scale(1.05)}
+.figma-dot{width:6px;height:6px;border-radius:50%;display:inline-block}
+@keyframes framePulse{0%,100%{opacity:.6}50%{opacity:1}}
+.frame-pulse{animation:framePulse 3s ease-in-out infinite}
+</style>
 </head>
 <body>
+<div class="blob w-72 h-72 bg-softGold top-20 -left-20"></div>
+<div class="blob w-96 h-96 bg-sage top-1/3 -right-32" style="animation-delay:2s"></div>
+<div class="blob w-64 h-64 bg-mauve bottom-40 left-1/4" style="animation-delay:4s"></div>
+<div class="blob w-80 h-80 bg-blush bottom-20 right-1/4" style="animation-delay:3s"></div>
 
-  <!-- ╔══════════════════════════════════════════╗ -->
-  <!-- ║         FLOATING BACKGROUND BLOBS        ║ -->
-  <!-- ╚══════════════════════════════════════════╝ -->
-  <div class="blob w-72 h-72 bg-softGold top-20 -left-20" style="animation-delay:0s"></div>
-  <div class="blob w-96 h-96 bg-sage top-1/3 -right-32" style="animation-delay:2s"></div>
-  <div class="blob w-64 h-64 bg-mauve bottom-40 left-1/4" style="animation-delay:4s"></div>
-  <div class="blob w-80 h-80 bg-blush bottom-20 right-1/4" style="animation-delay:3s"></div>
+<!-- NAV -->
+<nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-500" style="backdrop-filter:blur(12px);background:rgba(250,249,246,.85)">
+<div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+<a href="#hero" class="font-serif text-2xl font-bold text-textDark tracking-tight">Maha Abid<span class="text-softGold">.</span></a>
+<div class="hidden md:flex items-center gap-8">
+<a href="#about" class="nav-link text-sm font-medium text-textMuted hover:text-textDark transition-colors">About</a>
+<a href="#projects" class="nav-link text-sm font-medium text-textMuted hover:text-textDark transition-colors">Projects</a>
 
-  <!-- ╔══════════════════════════════════════════╗ -->
-  <!-- ║              NAVIGATION BAR              ║ -->
-  <!-- ╚══════════════════════════════════════════╝ -->
-  <!-- ✏️ EDIT: To change nav links, edit the text inside <a> tags below -->
-  <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-500" style="backdrop-filter:blur(12px);background:rgba(250,249,246,.85)">
-    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-      <!-- ✏️ EDIT: Change your logo/brand name here -->
-      <a href="#hero" class="font-serif text-2xl font-bold text-textDark tracking-tight">
-        Maha Abid<span class="text-softGold">.</span>
-      </a>
-      <!-- Desktop Nav -->
-      <div class="hidden md:flex items-center gap-8">
-        <a href="#about" class="nav-link text-sm font-medium text-textMuted hover:text-textDark transition-colors">About</a>
-        <a href="#projects" class="nav-link text-sm font-medium text-textMuted hover:text-textDark transition-colors">Projects</a>
-        <a href="#skills" class="nav-link text-sm font-medium text-textMuted hover:text-textDark transition-colors">Skills</a>
-        <a href="#contact" class="nav-link text-sm font-medium text-textMuted hover:text-textDark transition-colors">Contact</a>
-        <a href="#contact" class="ml-2 px-5 py-2.5 bg-softGold text-white text-sm font-medium rounded-full hover:bg-softGoldDark transition-colors">Hire Me</a>
-      </div>
-      <!-- Mobile Hamburger -->
-      <button id="menuBtn" class="md:hidden p-2 rounded-lg hover:bg-softGoldLight/30 transition-colors">
-        <i data-lucide="menu" class="w-5 h-5 text-textDark"></i>
-      </button>
+<a href="#contact" class="nav-link text-sm font-medium text-textMuted hover:text-textDark transition-colors">Contact</a>
+
+</div>
+<button id="menuBtn" class="md:hidden p-2 rounded-lg hover:bg-softGoldLight/30 transition-colors"><i data-lucide="menu" class="w-5 h-5 text-textDark"></i></button>
+</div>
+<div id="mobileMenu" class="md:hidden hidden px-6 pb-6 pt-2 border-t border-borderSoft">
+<div class="flex flex-col gap-4">
+<a href="#about" class="text-sm font-medium text-textMuted hover:text-textDark mobile-link">About</a>
+<a href="#projects" class="text-sm font-medium text-textMuted hover:text-textDark mobile-link">Projects</a>
+
+<a href="#contact" class="text-sm font-medium text-textMuted hover:text-textDark mobile-link">Contact</a>
+
+</div></div>
+</nav>
+
+<!-- HERO -->
+<section id="hero" class="min-h-screen flex items-center relative pt-20">
+<div class="max-w-6xl mx-auto px-6 w-full">
+<div class="grid md:grid-cols-2 gap-12 items-center">
+<div class="order-2 md:order-1">
+<div id="heroTag" class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-softGoldLight/40 border border-softGoldLight mb-6">
+<span class="w-2 h-2 rounded-full bg-sage animate-pulse"></span>
+<span class="text-xs font-medium text-softGoldDark tracking-wide uppercase">Open to opportunities</span>
+</div>
+<h1 id="heroName" class="font-serif text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight text-textDark mb-4">Hi, I'm<br><span class="text-softGold">Maha Abid</span></h1>
+<div class="flex items-center gap-2 mb-6"><span id="heroTitle" class="text-lg md:text-xl font-display font-medium text-textMuted cursor-blink"></span></div>
+<p id="heroDesc" class="text-base text-textMuted leading-relaxed max-w-md mb-8">A final-semester BSCS student at University of the Punjab (result awaited) with a passion for UI/UX design. I love creating simple, user-centered designs that look clean and feel easy to use</p>
+<div id="heroBtns" class="flex flex-wrap gap-4">
+<a href="#projects" class="px-7 py-3.5 bg-textDark text-white text-sm font-medium rounded-full hover:bg-softGold transition-colors duration-300 flex items-center gap-2">View My Work <i data-lucide="arrow-down-right" class="w-4 h-4"></i></a>
+<a href="#contact" class="px-7 py-3.5 border-2 border-borderSoft text-textDark text-sm font-medium rounded-full hover:border-softGold hover:text-softGold transition-all duration-300">Let's Talk</a>
+</div>
+
+</div>
+
+
+
+
+
+
+<!-- Figma Frame Visual - Website Design -->
+<div id="heroVisual" class="order-1 md:order-2 flex justify-center items-center">
+<div class="w-full max-w-md rounded-2xl overflow-hidden border border-borderSoft" style="box-shadow:0 25px 80px rgba(0,0,0,.1),0 0 0 1px rgba(201,168,124,.1);background:#f5f5f5">
+<!-- Figma Top Bar -->
+<div class="flex items-center justify-between px-4 py-2.5 bg-white border-b border-borderSoft">
+<div class="flex items-center gap-2">
+<span class="figma-dot" style="background:#f24e1e"></span>
+<span class="figma-dot" style="background:#a259ff"></span>
+<span class="figma-dot" style="background:#1abcfe"></span>
+<span class="figma-dot" style="background:#0acf83"></span>
+</div>
+<span class="text-[11px] font-medium text-textLight">Website Design</span>
+<span class="text-[10px] text-textLight">Frame 1</span>
+</div>
+<!-- Fake Figma Canvas -->
+<div class="p-5 relative" style="min-height:330px;background:#e8e5de">
+<!-- Website Artboard -->
+<div class="mx-auto rounded-lg bg-white overflow-hidden" style="width:250px;box-shadow:0 4px 20px rgba(0,0,0,.08)">
+<!-- Browser Dots -->
+<div class="h-5 bg-cream border-b border-borderSoft flex items-center px-2 gap-1">
+<div class="w-1.5 h-1.5 rounded-full" style="background:#ff5f57"></div>
+<div class="w-1.5 h-1.5 rounded-full" style="background:#febc2e"></div>
+<div class="w-1.5 h-1.5 rounded-full" style="background:#28c840"></div>
+<div class="ml-2 flex-1 h-2.5 rounded bg-white border border-borderSoft flex items-center px-1.5"><div class="w-1 h-1 rounded-full bg-borderSoft"></div></div>
+</div>
+<!-- Navbar -->
+<div class="h-7 bg-white border-b border-borderSoft flex items-center justify-between px-3">
+<div class="w-9 h-2 rounded bg-softGold/70"></div>
+<div class="flex gap-2.5">
+<div class="w-5 h-1 rounded bg-textDark/15"></div>
+<div class="w-5 h-1 rounded bg-textDark/15"></div>
+<div class="w-5 h-1 rounded bg-textDark/15"></div>
+<div class="w-7 h-3 rounded-full bg-softGold/50"></div>
+</div>
+</div>
+<!-- Hero Section -->
+<div class="relative" style="background:linear-gradient(135deg,#e8d5b8 0%,#d4e2cd 50%,#e4d5e5 100%);padding:16px 14px 14px">
+<div class="w-20 h-2.5 rounded bg-textDark/25 mb-1.5"></div>
+<div class="w-28 h-2 rounded bg-textDark/15 mb-1"></div>
+<div class="w-24 h-1.5 rounded bg-textDark/10 mb-3"></div>
+<div class="flex gap-2 mb-3">
+<div class="w-12 h-4.5 rounded-full bg-textDark/80 flex items-center justify-center"><div class="w-3 h-0.5 rounded bg-white/70"></div></div>
+<div class="w-12 h-4.5 rounded-full border-2 border-textDark/20"></div>
+</div>
+<div class="flex gap-2">
+<div class="w-5 h-5 rounded-full bg-white/40 border border-white/60"></div>
+<div class="w-5 h-5 rounded-full bg-white/40 border border-white/60"></div>
+<div class="w-5 h-5 rounded-full bg-white/40 border border-white/60"></div>
+</div>
+</div>
+<!-- Three Feature Cards -->
+<div class="px-2.5 py-3 flex gap-2">
+<div class="flex-1 rounded-lg p-2 bg-softGoldLight/30 border border-softGoldLight/50">
+<div class="w-5 h-5 rounded-md bg-softGold/30 mb-1.5 flex items-center justify-center"><div class="w-2.5 h-0.5 rounded bg-softGold/60"></div></div>
+<div class="w-full h-1 rounded bg-textDark/12 mb-1"></div>
+<div class="w-3/4 h-1 rounded bg-textDark/8"></div>
+</div>
+<div class="flex-1 rounded-lg p-2 bg-sageLight/40 border border-sageLight/60">
+<div class="w-5 h-5 rounded-md bg-sage/25 mb-1.5 flex items-center justify-center"><div class="w-2.5 h-2 rounded-sm bg-sage/40"></div></div>
+<div class="w-full h-1 rounded bg-textDark/12 mb-1"></div>
+<div class="w-3/4 h-1 rounded bg-textDark/8"></div>
+</div>
+<div class="flex-1 rounded-lg p-2 bg-mauveLight/35 border border-mauveLight/50">
+<div class="w-5 h-5 rounded-md bg-mauve/25 mb-1.5 flex items-center justify-center"><div class="w-2 h-2 rounded-full bg-mauve/40"></div></div>
+<div class="w-full h-1 rounded bg-textDark/12 mb-1"></div>
+<div class="w-3/4 h-1 rounded bg-textDark/8"></div>
+</div>
+</div>
+<!-- Two Column Content -->
+<div class="px-2.5 pb-2 flex gap-2">
+<div class="flex-1">
+<div class="w-14 h-1.5 rounded bg-textDark/20 mb-2"></div>
+<div class="w-full h-1 rounded bg-textDark/8 mb-1"></div>
+<div class="w-full h-1 rounded bg-textDark/8 mb-1"></div>
+<div class="w-3/4 h-1 rounded bg-textDark/8 mb-2.5"></div>
+<div class="w-10 h-3.5 rounded-full bg-softGold/40"></div>
+</div>
+<div class="w-20 h-20 rounded-lg bg-blushLight/50 border border-blushLight/60 flex items-center justify-center">
+<div class="w-8 h-8 rounded-full bg-blushLight/80 border border-blush"></div>
+</div>
+</div>
+<!-- Testimonial -->
+<div class="mx-2.5 mb-2.5 p-2.5 rounded-lg bg-cream border border-borderSoft">
+<div class="flex gap-1 mb-1.5"><div class="w-2 h-2 rounded-sm bg-softGold/60"></div><div class="w-2 h-2 rounded-sm bg-softGold/60"></div><div class="w-2 h-2 rounded-sm bg-softGold/60"></div><div class="w-2 h-2 rounded-sm bg-softGold/60"></div><div class="w-2 h-2 rounded-sm bg-softGold/60"></div></div>
+<div class="w-full h-1 rounded bg-textDark/10 mb-1"></div>
+<div class="w-4/5 h-1 rounded bg-textDark/10 mb-1.5"></div>
+<div class="flex items-center gap-1.5"><div class="w-4 h-4 rounded-full bg-softGoldLight/70"></div><div class="w-8 h-1 rounded bg-textDark/15"></div></div>
+</div>
+<!-- Footer -->
+<div class="h-8 bg-textDark/5 border-t border-borderSoft flex items-center justify-between px-3">
+<div class="w-10 h-1 rounded bg-textDark/10"></div>
+<div class="flex gap-1.5">
+<div class="w-3.5 h-3.5 rounded-full border border-textDark/10"></div>
+<div class="w-3.5 h-3.5 rounded-full border border-textDark/10"></div>
+<div class="w-3.5 h-3.5 rounded-full border border-textDark/10"></div>
+</div>
+</div>
+</div>
+<!-- Selection box -->
+<div class="absolute frame-pulse" style="top:20px;right:20px;width:260px;height:310px;border:2px solid #a259ff;border-radius:10px;pointer-events:none"></div>
+<!-- Cursor -->
+<div class="absolute" style="top:100px;left:44%;pointer-events:none">
+<svg width="16" height="20" viewBox="0 0 16 20" fill="none"><path d="M1 1L6.5 18L8.5 10.5L15 8.5L1 1Z" fill="#a259ff" stroke="#fff" stroke-width="1.5"/></svg>
+</div>
+</div>
+<!-- Figma Bottom Toolbar -->
+<div class="flex items-center justify-between px-4 py-2 bg-white border-t border-borderSoft">
+<div class="flex items-center gap-3">
+<div class="w-5 h-5 rounded bg-softGoldLight/60 border border-softGoldLight"></div>
+<div class="w-5 h-5 rounded bg-sageLight/60 border border-sageLight"></div>
+<div class="w-5 h-5 rounded bg-mauveLight/60 border border-mauveLight"></div>
+</div>
+<span class="text-[9px] text-textLight">100%</span>
+</div>
+</div>
+</div>
+
+
+
+
+</div>
+</div>
+</div>
+
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="py-24 md:py-32 relative">
+<div class="max-w-6xl mx-auto px-6">
+<div class="section-reveal text-center mb-16">
+<span class="text-xs font-medium uppercase tracking-[.2em] text-softGold">Get to Know Me</span>
+<h2 class="font-serif text-4xl md:text-5xl font-bold text-textDark mt-3 tracking-tight">About Me</h2>
+</div>
+<div class="grid md:grid-cols-2 gap-16 items-start">
+<div class="section-reveal">
+<p class="text-textMuted leading-relaxed mb-6">I'm Maha Abid, a BSCS student at <strong class="text-textDark">University of the Punjab</strong> with a deep interest in UI/UX design. I believe great design is invisible — when users don't have to think about how to use something, that's when you know the design worked.</p>
+<p class="text-textMuted leading-relaxed mb-6">I work primarily in <strong class="text-textDark">Figma</strong>, where I've designed 3 complete projects. My process starts with understanding the user, then wireframing, prototyping, and polishing every detail until it feels just right.</p>
+<p class="text-textMuted leading-relaxed mb-8">As a fresher, I'm eager to learn, grow, and contribute to design teams that care about making things better for real people.</p>
+<div class="grid grid-cols-2 gap-4">
+<div class="p-4 rounded-xl bg-white/60 border border-borderSoft"><span class="text-xs text-textLight uppercase tracking-wider">Name</span><p class="text-sm font-medium text-textDark mt-1">Maha Abid</p></div>
+<div class="p-4 rounded-xl bg-white/60 border border-borderSoft"><span class="text-xs text-textLight uppercase tracking-wider">Degree</span><p class="text-sm font-medium text-textDark mt-1">BSCS</p></div>
+<div class="p-4 rounded-xl bg-white/60 border border-borderSoft"><span class="text-xs text-textLight uppercase tracking-wider">University</span><p class="text-sm font-medium text-textDark mt-1">University of the Punjab</p></div>
+<div class="p-4 rounded-xl bg-white/60 border border-borderSoft"><span class="text-xs text-textLight uppercase tracking-wider">Focus</span><p class="text-sm font-medium text-textDark mt-1">UI/UX Design</p></div>
+</div>
+</div>
+<div class="section-reveal">
+<div class="bg-white/70 border border-borderSoft rounded-2xl p-8 shadow-sm">
+<div class="flex items-center gap-3 mb-8">
+<div class="w-10 h-10 rounded-xl bg-softGoldLight/40 flex items-center justify-center"><i data-lucide="graduation-cap" class="w-5 h-5 text-softGold"></i></div>
+<h3 class="font-display text-lg font-semibold text-textDark">Education</h3>
+</div>
+<div class="relative pl-6 border-l-2 border-softGoldLight space-y-8">
+<div class="relative">
+<div class="absolute -left-[25px] top-1 w-3 h-3 rounded-full bg-softGold border-2 border-cream"></div>
+<span class="text-xs font-medium text-softGold uppercase tracking-wider">2022 — Present</span>
+<h4 class="text-base font-semibold text-textDark mt-1">Bachelor of Science in Computer Science</h4>
+<p class="text-sm text-textMuted mt-1">University of the Punjab, Lahore</p>
+<p class="text-xs text-textLight mt-2">With a growing focus on UI/UX design through personal projects.</p>
+</div>
+</div>
+<!-- Design Process -->
+<div class="mt-10">
+<h4 class="text-sm font-semibold text-textDark mb-4">My Design Process</h4>
+<div class="flex flex-wrap gap-2">
+<span class="tag bg-softGoldLight/40 text-softGoldDark">Research</span>
+<span class="tag bg-sageLight/60 text-sage">Wireframing</span>
+<span class="tag bg-mauveLight/50 text-mauve">Prototyping</span>
+<span class="tag bg-blushLight/60 text-blush">Visual Design</span>
+<span class="tag bg-softGoldLight/40 text-softGoldDark">Usability Testing</span>
+</div>
+</div>
+</div></div>
+</div></div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="py-24 md:py-32 relative">
+<div class="max-w-6xl mx-auto px-6">
+<div class="section-reveal text-center mb-16">
+<span class="text-xs font-medium uppercase tracking-[.2em] text-softGold">Selected Work</span>
+<h2 class="font-serif text-4xl md:text-5xl font-bold text-textDark mt-3 tracking-tight">My Projects</h2>
+<p class="text-textMuted mt-4 max-w-lg mx-auto text-sm leading-relaxed">Three UI/UX projects designed in Figma, each exploring different design challenges and user needs.</p>
+</div>
+<div class="grid md:grid-cols-3 gap-8">
+
+<!-- PROJECT 1 -->
+<!-- ✏️ EDIT: Apna pehla Figma project yahan dalo — image, name, description, process -->
+<div class="section-reveal card-hover bg-white/80 border border-borderSoft rounded-2xl overflow-hidden shadow-sm">
+<div class="project-img h-52 relative">
+<!-- ✏️ EDIT: Apne project ki screenshot URL yahan dalo -->
+<img src=images/Comparify.PNG alt="Project 1" class="w-full h-full object-cover">
+
+</div>
+<div class="p-6">
+<h3 class="font-display text-lg font-semibold text-textDark mb-2">Comparify</h3>
+<p class="text-sm text-textMuted leading-relaxed mb-4">A smart shopping price comparison platform that helps users search by photo or text and compare prices across multiple stores.</p>
+<div class="flex flex-wrap gap-1.5 mb-5">
+<span class="tag bg-softGoldLight/30 text-softGoldDark text-[11px]">Figma</span>
+<span class="tag bg-softGoldLight/30 text-softGoldDark text-[11px]">UI Design</span>
+<span class="tag bg-softGoldLight/30 text-softGoldDark text-[11px]">Prototyping</span>
+</div>
+<div class="flex items-center gap-3">
+<!-- ✏️ EDIT: Apna Figma prototype link yahan dalo -->
+<a href="https://www.figma.com/design/OiJBXjoi3sCQ4gkpfgxokE/Untitled?node-id=194-215&t=KP3iSdliew9Q1U7X-1" target="_blank" class="flex items-center gap-1.5 text-sm font-medium text-textDark hover:text-softGold transition-colors"><i data-lucide="external-link" class="w-4 h-4"></i> View Prototype</a>
+</div>
+
+<div class="flex items-center gap-3">
+<!-- ✏️ EDIT: Apna Figma prototype link yahan dalo -->
+<a href="comparifycasestudy.html" target="_blank" class="flex items-center gap-1.5 text-sm font-medium text-textDark hover:text-softGold transition-colors"><i data-lucide="external-link" class="w-4 h-4"></i> View CaseStudy</a>
+</div>
+
+</div>
+</div>
+
+<!-- PROJECT 2 -->
+<div class="section-reveal card-hover bg-white/80 border border-borderSoft rounded-2xl overflow-hidden shadow-sm">
+<div class="project-img h-52 relative">
+<img src=images/TamkeenSLP.PNG alt="Project 2" class="w-full h-full object-cover">
+
+</div>
+<div class="p-6">
+<h3 class="font-display text-lg font-semibold text-textDark mb-2">Tamkeen SLP</h3>
+<p class="text-sm text-textMuted leading-relaxed mb-4">A calm, professional website designed for a Speech and Language Pathology practice — including service pages and appointment booking.</p>
+<div class="flex flex-wrap gap-1.5 mb-5">
+<span class="tag bg-sageLight/50 text-sage text-[11px]">Figma</span>
+<span class="tag bg-sageLight/50 text-sage text-[11px]">Web</span>
+<span class="tag bg-sageLight/50 text-sage text-[11px]">Responsive Design</span>
+</div>
+<div class="flex items-center gap-3">
+<a href="https://www.figma.com/design/OiJBXjoi3sCQ4gkpfgxokE/Untitled?node-id=0-1&t=KP3iSdliew9Q1U7X-1" target="_blank" class="flex items-center gap-1.5 text-sm font-medium text-textDark hover:text-softGold transition-colors"><i data-lucide="external-link" class="w-4 h-4"></i> View Prototype</a>
+</div>
+
+<div class="flex items-center gap-3">
+<!-- ✏️ EDIT: Apna Figma prototype link yahan dalo -->
+<a href="tamkeenslpcasestudy.html" target="_blank" class="flex items-center gap-1.5 text-sm font-medium text-textDark hover:text-softGold transition-colors"><i data-lucide="external-link" class="w-4 h-4"></i> View CaseStudy</a>
+</div>
+</div>
+</div>
+
+<!-- PROJECT 3 -->
+<div class="section-reveal card-hover bg-white/80 border border-borderSoft rounded-2xl overflow-hidden shadow-sm">
+<div class="project-img h-52 relative">
+<img src=images/PageTurn.PNG alt="Project 3" class="w-full h-full object-cover">
+
+</div>
+<div class="p-6">
+<h3 class="font-display text-lg font-semibold text-textDark mb-2">PageTurn</h3>
+<p class="text-sm text-textMuted leading-relaxed mb-4">A book discovery website that helps readers browse by category, and once signed in, continue reading from where they left off.</p>
+<div class="flex flex-wrap gap-1.5 mb-5">
+<span class="tag bg-mauveLight/50 text-mauve text-[11px]">Figma</span>
+<span class="tag bg-mauveLight/50 text-mauve text-[11px]">UI Design</span>
+<span class="tag bg-mauveLight/50 text-mauve text-[11px]">Prototyping</span>
+</div>
+<div class="flex items-center gap-3">
+<a href="https://www.figma.com/design/OiJBXjoi3sCQ4gkpfgxokE/Untitled?node-id=201-12783&t=KP3iSdliew9Q1U7X-1" target="_blank" class="flex items-center gap-1.5 text-sm font-medium text-textDark hover:text-softGold transition-colors"><i data-lucide="external-link" class="w-4 h-4"></i> View Prototype</a>
+</div>
+
+<div class="flex items-center gap-3">
+<!-- ✏️ EDIT: Apna Figma prototype link yahan dalo -->
+<a href="pageturncasestudt.html" target="_blank" class="flex items-center gap-1.5 text-sm font-medium text-textDark hover:text-softGold transition-colors"><i data-lucide="external-link" class="w-4 h-4"></i> View CaseStudy</a>
+</div>
+</div>
+</div>
+
+</div></div>
+</section>
+
+
+
+
+
+<!-- SKILLS -->
+
+
+
+<!-- CONTACT -->
+<section id="contact" class="py-24 md:py-32 relative">
+<div class="max-w-6xl mx-auto px-6">
+<div class="section-reveal text-center mb-16">
+<span class="text-xs font-medium uppercase tracking-[.2em] text-softGold">Get In Touch</span>
+<h2 class="font-serif text-4xl md:text-5xl font-bold text-textDark mt-3 tracking-tight">Let's Work Together</h2>
+<p class="text-textMuted mt-4 max-w-lg mx-auto text-sm leading-relaxed">I'm looking for opportunities to grow as a UI/UX designer. If my work aligns with what your team needs, I'd love to connect.</p>
+</div>
+<div class="section-reveal max-w-2xl mx-auto">
+<div class="bg-white/70 border border-borderSoft rounded-2xl p-10 shadow-sm space-y-8">
+<div class="flex items-center gap-5 pb-8 border-b border-borderSoft">
+<div class="w-12 h-12 rounded-xl bg-softGoldLight/40 flex items-center justify-center flex-shrink-0"><i data-lucide="mail" class="w-5 h-5 text-softGold"></i></div>
+<div><span class="text-xs text-textLight uppercase tracking-wider">Email</span><p class="text-sm font-medium text-textDark mt-0.5">mahaabid030@gmail.com</p></div>
+</div>
+<div class="flex items-center gap-5 pb-8 border-b border-borderSoft">
+<div class="w-12 h-12 rounded-xl bg-sageLight/50 flex items-center justify-center flex-shrink-0"><i data-lucide="phone" class="w-5 h-5 text-sage"></i></div>
+<div><span class="text-xs text-textLight uppercase tracking-wider">Phone</span><p class="text-sm font-medium text-textDark mt-0.5">03288324511</p></div>
+</div>
+<div class="flex items-center gap-5">
+<div class="w-12 h-12 rounded-xl bg-mauveLight/50 flex items-center justify-center flex-shrink-0"><i data-lucide="map-pin" class="w-5 h-5 text-mauve"></i></div>
+<div><span class="text-xs text-textLight uppercase tracking-wider">Location</span><p class="text-sm font-medium text-textDark mt-0.5">Lahore, Pakistan</p></div>
+</div>
+</div></div></div>
+</section>
+
+<footer class="border-t border-borderSoft py-10">
+  <div class="max-w-6xl mx-auto px-6 flex flex-col items-center justify-center text-center gap-4">
+    <p class="text-sm text-textLight">&copy; 2026 Maha Abid. All rights reserved.</p>
+    <div class="flex items-center justify-center gap-4">
+
     </div>
-    <!-- Mobile Menu -->
-    <div id="mobileMenu" class="md:hidden hidden px-6 pb-6 pt-2 border-t border-borderSoft">
-      <div class="flex flex-col gap-4">
-        <a href="#about" class="text-sm font-medium text-textMuted hover:text-textDark transition-colors mobile-link">About</a>
-        <a href="#projects" class="text-sm font-medium text-textMuted hover:text-textDark transition-colors mobile-link">Projects</a>
-        <a href="#skills" class="text-sm font-medium text-textMuted hover:text-textDark transition-colors mobile-link">Skills</a>
-        <a href="#contact" class="text-sm font-medium text-textMuted hover:text-textDark transition-colors mobile-link">Contact</a>
-        <a href="#contact" class="inline-block text-center px-5 py-2.5 bg-softGold text-white text-sm font-medium rounded-full hover:bg-softGoldDark transition-colors mobile-link">Hire Me</a>
-      </div>
-    </div>
-  </nav>
+  </div>
+</footer>
 
-  <!-- ╔══════════════════════════════════════════╗ -->
-  <!-- ║               HERO SECTION               ║ -->
-  <!-- ╚══════════════════════════════════════════╝ -->
-  <!-- ✏️ EDIT: Change your intro text, name, title, and description below -->
-  <section id="hero" class="min-h-screen flex items-center relative pt-20">
-    <div class="max-w-6xl mx-auto px-6 w-full">
-      <div class="grid md:grid-cols-2 gap-12 items-center">
-        <!-- Left: Text -->
-        <div class="order-2 md:order-1">
-          <div id="heroTag" class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-softGoldLight/40 border border-softGoldLight mb-6">
-            <span class="w-2 h-2 rounded-full bg-sage animate-pulse"></span>
-            <span class="text-xs font-medium text-softGoldDark tracking-wide uppercase">Available for opportunities</span>
-          </div>
-          <h1 id="heroName" class="font-serif text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight text-textDark mb-4">
-            Hi, I'm<br><span class="text-softGold">Maha Abid</span>
-          </h1>
-          <div class="flex items-center gap-2 mb-6">
-            <span id="heroTitle" class="text-lg md:text-xl font-display font-medium text-textMuted cursor-blink"></span>
-          </div>
-          <p id="heroDesc" class="text-base text-textMuted leading-relaxed max-w-md mb-8">
-            A passionate BSCS student at Punjab University, crafting beautiful digital experiences through clean code and creative design.
-          </p>
-          <div id="heroBtns" class="flex flex-wrap gap-4">
-            <a href="#projects" class="px-7 py-3.5 bg-textDark text-white text-sm font-medium rounded-full hover:bg-softGold transition-colors duration-300 flex items-center gap-2">
-              View My Work <i data-lucide="arrow-down-right" class="w-4 h-4"></i>
-            </a>
-            <a href="#contact" class="px-7 py-3.5 border-2 border-borderSoft text-textDark text-sm font-medium rounded-full hover:border-softGold hover:text-softGold transition-all duration-300">
-              Let's Talk
-            </a>
-          </div>
-          <!-- Social Links -->
-          <!-- ✏️ EDIT: Add or change your social media links here -->
-          <div id="heroSocials" class="flex items-center gap-4 mt-10">
-            <a href="https://github.com/" target="_blank" class="w-10 h-10 rounded-full border border-borderSoft flex items-center justify-center hover:border-softGold hover:bg-softGoldLight/20 transition-all duration-300">
-              <i data-lucide="github" class="w-4 h-4 text-textMuted"></i>
-            </a>
-            <a href="https://linkedin.com/" target="_blank" class="w-10 h-10 rounded-full border border-borderSoft flex items-center justify-center hover:border-softGold hover:bg-softGoldLight/20 transition-all duration-300">
-              <i data-lucide="linkedin" class="w-4 h-4 text-textMuted"></i>
-            </a>
-            <a href="mailto:mahaabid030@email.com" class="w-10 h-10 rounded-full border border-borderSoft flex items-center justify-center hover:border-softGold hover:bg-softGoldLight/20 transition-all duration-300">
-              <i data-lucide="mail" class="w-4 h-4 text-textMuted"></i>
-            </a>
-          </div>
-        </div>
-        <!-- Right: Image -->
-                <!-- Right: Code Editor -->
-        <div id="heroVisual" class="order-1 md:order-2 flex justify-center items-center">
-          <div class="w-full max-w-md rounded-2xl overflow-hidden" style="box-shadow:0 25px 80px rgba(0,0,0,.15),0 0 0 1px rgba(201,168,124,.15)">
-            <div class="flex items-center justify-between px-5 py-3.5" style="background:#2b2b2b">
-              <div class="flex items-center gap-2">
-                <span class="w-3 h-3 rounded-full" style="background:#ff5f57"></span>
-                <span class="w-3 h-3 rounded-full" style="background:#febc2e"></span>
-                <span class="w-3 h-3 rounded-full" style="background:#28c840"></span>
-              </div>
-              <span class="text-xs" style="color:#666;font-family:monospace">maha.js</span>
-              <div class="text-xs" style="color:#555">UTF-8</div>
-            </div>
-            <div class="flex" style="background:#2b2b2b;min-height:320px">
-              <div class="py-5 px-3 text-right select-none" style="border-right:1px solid #3a3a3a">
-                <div class="text-xs leading-6" style="color:#555;font-family:monospace">
-                  <div>1</div><div>2</div><div>3</div><div>4</div><div>5</div>
-                  <div>6</div><div>7</div><div>8</div><div>9</div><div>10</div>
-                  <div>11</div><div>12</div><div>13</div><div>14</div>
-                </div>
-              </div>
-              <div class="py-5 px-5 flex-1 overflow-hidden">
-                <div class="text-xs leading-6" style="color:#d4d4d4;font-family:monospace">
-                  <div class="code-line"><span style="color:#c586c0">const</span> <span style="color:#dcdcaa">maha</span> <span style="color:#d4d4d4">=</span> <span style="color:#d4d4d4">{</span></div>
-                  <div class="code-line">  <span style="color:#9cdcfe">name</span><span style="color:#d4d4d4">:</span> <span style="color:#c9a87c">"Maha Abid"</span><span style="color:#d4d4d4">,</span></div>
-                  <div class="code-line">  <span style="color:#9cdcfe">role</span><span style="color:#d4d4d4">:</span> <span style="color:#c9a87c">"Web Developer"</span><span style="color:#d4d4d4">,</span></div>
-                  <div class="code-line">  <span style="color:#9cdcfe">university</span><span style="color:#d4d4d4">:</span> <span style="color:#c9a87c">"Punjab University"</span><span style="color:#d4d4d4">,</span></div>
-                  <div class="code-line">  <span style="color:#9cdcfe">degree</span><span style="color:#d4d4d4">:</span> <span style="color:#c9a87c">"BSCS"</span><span style="color:#d4d4d4">,</span></div>
-                  <div class="code-line">  <span style="color:#9cdcfe">skills</span><span style="color:#d4d4d4">:</span> <span style="color:#d4d4d4">[</span></div>
-                  <div class="code-line">    <span style="color:#c9a87c">"HTML"</span><span style="color:#d4d4d4">,</span> <span style="color:#c9a87c">"CSS"</span><span style="color:#d4d4d4">,</span></div>
-                  <div class="code-line">    <span style="color:#c9a87c">"JavaScript"</span><span style="color:#d4d4d4">,</span></div>
-                  <div class="code-line">    <span style="color:#c9a87c">"PHP"</span><span style="color:#d4d4d4">,</span> <span style="color:#c9a87c">"MySQL"</span></div>
-                  <div class="code-line">  <span style="color:#d4d4d4">],</span></div>
-                  <div class="code-line">  <span style="color:#9cdcfe">passion</span><span style="color:#d4d4d4">:</span> <span style="color:#c9a87c">"Building</span></div>
-                  <div class="code-line">    <span style="color:#c9a87c">beautiful things"</span></div>
-                  <div class="code-line"><span style="color:#d4d4d4">};</span></div>
-                  <div class="code-line"><span class="code-cursor"></span></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Scroll Indicator -->
-    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
-      <span class="text-[10px] uppercase tracking-[.2em] text-textLight">Scroll</span>
-      <i data-lucide="chevron-down" class="w-4 h-4 text-textLight"></i>
-    </div>
-  </section>
-
-  <!-- ╔══════════════════════════════════════════╗ -->
-  <!-- ║              ABOUT SECTION               ║ -->
-  <!-- ╚══════════════════════════════════════════╝ -->
-  <!-- ✏️ EDIT: Update your about info, education details below -->
-  <section id="about" class="py-24 md:py-32 relative">
-    <div class="max-w-6xl mx-auto px-6">
-      <!-- Section Header -->
-      <div class="section-reveal text-center mb-16">
-        <span class="text-xs font-medium uppercase tracking-[.2em] text-softGold">Get to Know Me</span>
-        <h2 class="font-serif text-4xl md:text-5xl font-bold text-textDark mt-3 tracking-tight">About Me</h2>
-      </div>
-
-      <div class="grid md:grid-cols-2 gap-16 items-start">
-        <!-- About Text -->
-        <div class="section-reveal">
-          <p class="text-textMuted leading-relaxed mb-6">
-            I'm Maha Abid, a dedicated Computer Science student currently pursuing my BSCS degree at <strong class="text-textDark">Punjab University</strong>. My journey in tech started with curiosity and has grown into a real passion for building things that live on the internet.
-          </p>
-          <p class="text-textMuted leading-relaxed mb-6">
-            I specialize in front-end web development and love turning ideas into interactive, user-friendly websites. From my final year project <strong class="text-textDark">Comparify</strong> — a smart price comparison platform — to building a professional website for a <strong class="text-textDark">Speech & Language Pathologist</strong>, I enjoy solving real-world problems through code.
-          </p>
-          <p class="text-textMuted leading-relaxed mb-8">
-            When I'm not coding, you'll find me exploring new design trends, learning new technologies, or sipping chai while brainstorming my next project.
-          </p>
-          <!-- Quick Info -->
-          <div class="grid grid-cols-2 gap-4">
-            <div class="p-4 rounded-xl bg-white/60 border border-borderSoft">
-              <span class="text-xs text-textLight uppercase tracking-wider">Name</span>
-              <p class="text-sm font-medium text-textDark mt-1">Maha Abid</p>
-            </div>
-            <div class="p-4 rounded-xl bg-white/60 border border-borderSoft">
-              <span class="text-xs text-textLight uppercase tracking-wider">Degree</span>
-              <p class="text-sm font-medium text-textDark mt-1">BSCS</p>
-            </div>
-            <div class="p-4 rounded-xl bg-white/60 border border-borderSoft">
-              <span class="text-xs text-textLight uppercase tracking-wider">University</span>
-              <p class="text-sm font-medium text-textDark mt-1">Punjab University</p>
-            </div>
-            <div class="p-4 rounded-xl bg-white/60 border border-borderSoft">
-              <span class="text-xs text-textLight uppercase tracking-wider">Focus</span>
-              <p class="text-sm font-medium text-textDark mt-1">Web Development</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Education Card -->
-        <div class="section-reveal">
-          <div class="bg-white/70 border border-borderSoft rounded-2xl p-8 shadow-sm">
-            <div class="flex items-center gap-3 mb-8">
-              <div class="w-10 h-10 rounded-xl bg-softGoldLight/40 flex items-center justify-center">
-                <i data-lucide="graduation-cap" class="w-5 h-5 text-softGold"></i>
-              </div>
-              <h3 class="font-display text-lg font-semibold text-textDark">Education</h3>
-            </div>
-            <!-- ✏️ EDIT: Add more education entries by copying this block -->
-            <div class="relative pl-6 border-l-2 border-softGoldLight space-y-8">
-              <div class="relative">
-                <div class="absolute -left-[25px] top-1 w-3 h-3 rounded-full bg-softGold border-2 border-cream"></div>
-                <span class="text-xs font-medium text-softGold uppercase tracking-wider">2022 — Present</span>
-                <h4 class="text-base font-semibold text-textDark mt-1">Bachelor of Science in Computer Science</h4>
-                <p class="text-sm text-textMuted mt-1">Punjab University, Lahore</p>
-                <p class="text-xs text-textLight mt-2">Focused on web development, data structures, algorithms, and software engineering.</p>
-              </div>
-              <!-- ✏️ ADD MORE: Copy the block above to add another education entry -->
-            </div>
-
-            <!-- Interests -->
-            <div class="mt-10">
-              <h4 class="text-sm font-semibold text-textDark mb-4">Interests</h4>
-              <!-- ✏️ EDIT: Change your interests here -->
-              <div class="flex flex-wrap gap-2">
-                <span class="tag bg-softGoldLight/40 text-softGoldDark">Web Development</span>
-                <span class="tag bg-sageLight/60 text-sage">UI/UX Design</span>
-                <span class="tag bg-mauveLight/50 text-mauve">Creative Coding</span>
-                <span class="tag bg-blushLight/60 text-blush">Problem Solving</span>
-                <span class="tag bg-softGoldLight/40 text-softGoldDark">Tech Trends</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ╔══════════════════════════════════════════╗ -->
-  <!-- ║            PROJECTS SECTION              ║ -->
-  <!-- ╚══════════════════════════════════════════╝ -->
-  <!-- ✏️ EDIT: This is where you add/edit your projects. Read the guide at the bottom of this file! -->
-  <section id="projects" class="py-24 md:py-32 relative">
-    <div class="max-w-6xl mx-auto px-6">
-      <!-- Section Header -->
-      <div class="section-reveal text-center mb-16">
-        <span class="text-xs font-medium uppercase tracking-[.2em] text-softGold">What I've Built</span>
-        <h2 class="font-serif text-4xl md:text-5xl font-bold text-textDark mt-3 tracking-tight">My Projects</h2>
-        <p class="text-textMuted mt-4 max-w-lg mx-auto text-sm leading-relaxed">Each project reflects my passion for creating meaningful digital solutions. Click on any project to explore more.</p>
-      </div>
-
-      <!-- Projects Grid -->
-      <div class="grid md:grid-cols-2 gap-8">
-
-        <!-- ═══════════════════════════════════════ -->
-        <!-- 🔲 PROJECT 1: COMPARIFY                -->
-        <!-- ═══════════════════════════════════════ -->
-        <!-- ✏️ EDIT: Update this project's info, image, tags, links -->
-        <div class="section-reveal card-hover bg-white/80 border border-borderSoft rounded-2xl overflow-hidden shadow-sm">
-          <div class="project-img h-56 relative">
-            <!-- ✏️ EDIT: Replace this image URL with a screenshot of your Comparify project -->
-            <img src="https://picsum.photos/seed/comparify-shop/800/500.jpg" alt="Comparify" class="w-full h-full object-cover">
-            <div class="absolute top-4 right-4">
-              <span class="tag bg-white/90 text-softGoldDark backdrop-blur-sm text-[11px]">Final Year Project</span>
-            </div>
-          </div>
-          <div class="p-7">
-            <h3 class="font-display text-xl font-semibold text-textDark mb-2">Comparify</h3>
-            <p class="text-sm text-textMuted leading-relaxed mb-4">
-              A smart shopping price comparison website that helps users find the best deals across multiple stores. Compare prices instantly and save money on every purchase.
-            </p>
-            <!-- ✏️ EDIT: Change the tech tags below to match your actual tech stack -->
-            <div class="flex flex-wrap gap-2 mb-6">
-              <span class="tag bg-softGoldLight/30 text-softGoldDark">HTML</span>
-              <span class="tag bg-softGoldLight/30 text-softGoldDark">CSS</span>
-              <span class="tag bg-softGoldLight/30 text-softGoldDark">JavaScript</span>
-              <span class="tag bg-softGoldLight/30 text-softGoldDark">PHP</span>
-              <span class="tag bg-softGoldLight/30 text-softGoldDark">MySQL</span>
-            </div>
-            <div class="flex items-center gap-3">
-              <!-- ✏️ EDIT: Replace # with your actual GitHub/live links -->
-             <a href="https://comparify-three.vercel.app" target="_blank" class="flex items-center gap-2 text-sm font-medium text-textDark hover:text-softGold transition-colors">
-              <i data-lucide="external-link" class="w-4 h-4"></i> Live Demo
-              </a>
-              
-            </div>
-          </div>
-        </div>
-
-        <!-- ═══════════════════════════════════════ -->
-        <!-- 🔲 PROJECT 2: SLP WEBSITE              -->
-        <!-- ═══════════════════════════════════════ -->
-        <!-- ✏️ EDIT: Update this project's info, image, tags, links -->
-        <div class="section-reveal card-hover bg-white/80 border border-borderSoft rounded-2xl overflow-hidden shadow-sm">
-          <div class="project-img h-56 relative">
-            <!-- ✏️ EDIT: Replace this image URL with a screenshot of your SLP project -->
-            <img src="https://picsum.photos/seed/slp-therapy/800/500.jpg" alt="SLP Website" class="w-full h-full object-cover">
-            <div class="absolute top-4 right-4">
-              <span class="tag bg-white/90 text-sage backdrop-blur-sm text-[11px]">Client Project</span>
-            </div>
-          </div>
-          <div class="p-7">
-            <h3 class="font-display text-xl font-semibold text-textDark mb-2">SLP Professional Website</h3>
-            <p class="text-sm text-textMuted leading-relaxed mb-4">
-              A professional website designed for a Speech and Language Pathologist. Features appointment booking, service details, therapist profile, and a clean calming design.
-            </p>
-            <!-- ✏️ EDIT: Change the tech tags below to match your actual tech stack -->
-            <div class="flex flex-wrap gap-2 mb-6">
-              <span class="tag bg-sageLight/50 text-sage">HTML</span>
-              <span class="tag bg-sageLight/50 text-sage">CSS</span>
-              <span class="tag bg-sageLight/50 text-sage">JavaScript</span>
-              <span class="tag bg-sageLight/50 text-sage">Bootstrap</span>
-            </div>
-            <div class="flex items-center gap-3">
-              <!-- ✏️ EDIT: Replace # with your actual GitHub/live links -->
-              <a href="https://tamkeenslp.com/" target="_blank" class="flex items-center gap-2 text-sm font-medium text-textDark hover:text-softGold transition-colors">
-              <i data-lucide="external-link" class="w-4 h-4"></i> Live Demo
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- ═══════════════════════════════════════════════════════════ -->
-        <!-- ✏️ ADD MORE PROJECTS: Copy one of the project blocks above -->
-        <!-- and paste it here. Then change the info, image, tags, etc.  -->
-        <!-- Make sure the grid still looks good (2 columns on desktop)  -->
-        <!-- ═══════════════════════════════════════════════════════════ -->
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ╔══════════════════════════════════════════╗ -->
-  <!-- ║              SKILLS SECTION              ║ -->
-  <!-- ╚══════════════════════════════════════════╝ -->
-  <!-- ✏️ EDIT: Update your skills and proficiency levels below -->
-  <section id="skills" class="py-24 md:py-32 relative">
-    <div class="max-w-6xl mx-auto px-6">
-      <div class="section-reveal text-center mb-16">
-        <span class="text-xs font-medium uppercase tracking-[.2em] text-softGold">What I Know</span>
-        <h2 class="font-serif text-4xl md:text-5xl font-bold text-textDark mt-3 tracking-tight">My Skills</h2>
-      </div>
-
-      <div class="grid md:grid-cols-2 gap-12">
-        <!-- Skill Bars -->
-        <div class="section-reveal space-y-6">
-          <!-- ✏️ EDIT: Change skill name and width percentage (style="width:X%") -->
-          <div>
-            <div class="flex justify-between mb-2">
-              <span class="text-sm font-medium text-textDark">HTML & CSS</span>
-              <span class="text-xs text-textLight">90%</span>
-            </div>
-            <div class="h-2 bg-borderSoft rounded-full overflow-hidden">
-              <div class="skill-bar-fill" data-width="90"></div>
-            </div>
-          </div>
-          <div>
-            <div class="flex justify-between mb-2">
-              <span class="text-sm font-medium text-textDark">JavaScript</span>
-              <span class="text-xs text-textLight">75%</span>
-            </div>
-            <div class="h-2 bg-borderSoft rounded-full overflow-hidden">
-              <div class="skill-bar-fill" data-width="75"></div>
-            </div>
-          </div>
-          <div>
-            <div class="flex justify-between mb-2">
-              <span class="text-sm font-medium text-textDark">PHP</span>
-              <span class="text-xs text-textLight">65%</span>
-            </div>
-            <div class="h-2 bg-borderSoft rounded-full overflow-hidden">
-              <div class="skill-bar-fill" data-width="65"></div>
-            </div>
-          </div>
-          <div>
-            <div class="flex justify-between mb-2">
-              <span class="text-sm font-medium text-textDark">MySQL</span>
-              <span class="text-xs text-textLight">70%</span>
-            </div>
-            <div class="h-2 bg-borderSoft rounded-full overflow-hidden">
-              <div class="skill-bar-fill" data-width="70"></div>
-            </div>
-          </div>
-          <div>
-            <div class="flex justify-between mb-2">
-              <span class="text-sm font-medium text-textDark">Bootstrap / Tailwind</span>
-              <span class="text-xs text-textLight">85%</span>
-            </div>
-            <div class="h-2 bg-borderSoft rounded-full overflow-hidden">
-              <div class="skill-bar-fill" data-width="85"></div>
-            </div>
-          </div>
-          <!-- ✏️ ADD MORE: Copy any skill block above and paste here, change name & percentage -->
-        </div>
-
-        <!-- Tools & Tech Grid -->
-        <div class="section-reveal">
-          <h3 class="font-display text-lg font-semibold text-textDark mb-6">Tools & Technologies</h3>
-          <!-- ✏️ EDIT: Add/remove tools as needed -->
-          <div class="grid grid-cols-3 gap-4">
-            <div class="p-5 rounded-xl bg-white/60 border border-borderSoft text-center hover:border-softGoldLight transition-colors duration-300 group">
-              <i data-lucide="code-2" class="w-6 h-6 text-textLight mx-auto mb-2 group-hover:text-softGold transition-colors"></i>
-              <span class="text-xs font-medium text-textMuted">VS Code</span>
-            </div>
-            <div class="p-5 rounded-xl bg-white/60 border border-borderSoft text-center hover:border-softGoldLight transition-colors duration-300 group">
-              <i data-lucide="git-branch" class="w-6 h-6 text-textLight mx-auto mb-2 group-hover:text-softGold transition-colors"></i>
-              <span class="text-xs font-medium text-textMuted">Git</span>
-            </div>
-            <div class="p-5 rounded-xl bg-white/60 border border-borderSoft text-center hover:border-softGoldLight transition-colors duration-300 group">
-              <i data-lucide="github" class="w-6 h-6 text-textLight mx-auto mb-2 group-hover:text-softGold transition-colors"></i>
-              <span class="text-xs font-medium text-textMuted">GitHub</span>
-            </div>
-            <div class="p-5 rounded-xl bg-white/60 border border-borderSoft text-center hover:border-softGoldLight transition-colors duration-300 group">
-              <i data-lucide="figma" class="w-6 h-6 text-textLight mx-auto mb-2 group-hover:text-softGold transition-colors"></i>
-              <span class="text-xs font-medium text-textMuted">Figma</span>
-            </div>
-            <div class="p-5 rounded-xl bg-white/60 border border-borderSoft text-center hover:border-softGoldLight transition-colors duration-300 group">
-              <i data-lucide="database" class="w-6 h-6 text-textLight mx-auto mb-2 group-hover:text-softGold transition-colors"></i>
-              <span class="text-xs font-medium text-textMuted">phpMyAdmin</span>
-            </div>
-            <div class="p-5 rounded-xl bg-white/60 border border-borderSoft text-center hover:border-softGoldLight transition-colors duration-300 group">
-              <i data-lucide="globe" class="w-6 h-6 text-textLight mx-auto mb-2 group-hover:text-softGold transition-colors"></i>
-              <span class="text-xs font-medium text-textMuted">XAMPP</span>
-            </div>
-          </div>
-
-          <!-- Currently Learning -->
-          <div class="mt-8 p-5 rounded-xl bg-gradient-to-br from-softGoldLight/20 to-sageLight/20 border border-softGoldLight/40">
-            <div class="flex items-center gap-2 mb-2">
-              <i data-lucide="sparkles" class="w-4 h-4 text-softGold"></i>
-              <span class="text-xs font-semibold text-softGoldDark uppercase tracking-wider">Currently Learning</span>
-            </div>
-            <!-- ✏️ EDIT: Change what you're currently learning -->
-            <p class="text-sm text-textMuted">React.js, Node.js & Advanced JavaScript</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ╔══════════════════════════════════════════╗ -->
-  <!-- ║             CONTACT SECTION              ║ -->
-  <!-- ╚══════════════════════════════════════════╝ -->
-  <!-- ✏️ EDIT: Update your email, phone, and other contact details -->
-   <!-- ╔══════════════════════════════════════════╗ -->
-  <!-- ║             CONTACT SECTION              ║ -->
-  <!-- ╚══════════════════════════════════════════╝ -->
-  <section id="contact" class="py-24 md:py-32 relative">
-    <div class="max-w-6xl mx-auto px-6">
-      <div class="section-reveal text-center mb-16">
-        <span class="text-xs font-medium uppercase tracking-[.2em] text-softGold">Get In Touch</span>
-        <h2 class="font-serif text-4xl md:text-5xl font-bold text-textDark mt-3 tracking-tight">Let's Work Together</h2>
-        <p class="text-textMuted mt-4 max-w-lg mx-auto text-sm leading-relaxed">Have a project in mind or just want to say hello? I'd love to hear from you.</p>
-      </div>
-
-      <div class="section-reveal max-w-2xl mx-auto">
-        <div class="bg-white/70 border border-borderSoft rounded-2xl p-10 shadow-sm space-y-8">
-          <!-- Email -->
-          <div class="flex items-center gap-5 pb-8 border-b border-borderSoft">
-            <div class="w-12 h-12 rounded-xl bg-softGoldLight/40 flex items-center justify-center flex-shrink-0">
-              <i data-lucide="mail" class="w-5 h-5 text-softGold"></i>
-            </div>
-            <div>
-              <span class="text-xs text-textLight uppercase tracking-wider">Email</span>
-              <p class="text-sm font-medium text-textDark mt-0.5">mahaabid030@email.com</p>
-            </div>
-          </div>
-          <!-- Phone -->
-          <div class="flex items-center gap-5 pb-8 border-b border-borderSoft">
-            <div class="w-12 h-12 rounded-xl bg-sageLight/50 flex items-center justify-center flex-shrink-0">
-              <i data-lucide="phone" class="w-5 h-5 text-sage"></i>
-            </div>
-            <div>
-              <span class="text-xs text-textLight uppercase tracking-wider">Phone</span>
-              <p class="text-sm font-medium text-textDark mt-0.5">03288324511</p>
-            </div>
-          </div>
-          <!-- Location -->
-          <div class="flex items-center gap-5">
-            <div class="w-12 h-12 rounded-xl bg-mauveLight/50 flex items-center justify-center flex-shrink-0">
-              <i data-lucide="map-pin" class="w-5 h-5 text-mauve"></i>
-            </div>
-            <div>
-              <span class="text-xs text-textLight uppercase tracking-wider">Location</span>
-              <p class="text-sm font-medium text-textDark mt-0.5">Lahore, Pakistan</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ╔══════════════════════════════════════════╗ -->
-  <!-- ║                FOOTER                    ║ -->
-  <!-- ╚══════════════════════════════════════════╝ -->
-  <footer class="border-t border-borderSoft py-10">
-    <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
-      <p class="text-sm text-textLight">&copy; 2026 Maha Abid. All rights reserved.</p>
-      <!-- ✏️ EDIT: Change social links in footer too -->
-      <div class="flex items-center gap-4">
-        <a href="https://github.com/" target="_blank" class="w-9 h-9 rounded-full border border-borderSoft flex items-center justify-center hover:border-softGold transition-all duration-300">
-          <i data-lucide="github" class="w-3.5 h-3.5 text-textLight"></i>
-        </a>
-        <a href="https://linkedin.com/" target="_blank" class="w-9 h-9 rounded-full border border-borderSoft flex items-center justify-center hover:border-softGold transition-all duration-300">
-          <i data-lucide="linkedin" class="w-3.5 h-3.5 text-textLight"></i>
-        </a>
-        <a href="mailto:mahaabid@email.com" class="w-9 h-9 rounded-full border border-borderSoft flex items-center justify-center hover:border-softGold transition-all duration-300">
-          <i data-lucide="mail" class="w-3.5 h-3.5 text-textLight"></i>
-        </a>
-      </div>
-    </div>
-  </footer>
-
-  
-  <!-- ╔═══════════════════════════════════════════════════════════════════╗ -->
-  <!-- ║                        JAVASCRIPT                                ║ -->
-  <!-- ╚═══════════════════════════════════════════════════════════════════╝ -->
-  <script>
-    // Initialize Lucide Icons
-    lucide.createIcons();
-
-    // ─── Mobile Menu Toggle ───
-    const menuBtn = document.getElementById('menuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    menuBtn.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
-    });
-    document.querySelectorAll('.mobile-link').forEach(link => {
-      link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
-    });
-
-    // ─── Navbar scroll effect ───
-    window.addEventListener('scroll', () => {
-      const nav = document.getElementById('navbar');
-      if (window.scrollY > 50) {
-        nav.style.boxShadow = '0 4px 30px rgba(201,168,124,0.08)';
-        nav.style.background = 'rgba(250,249,246,0.95)';
-      } else {
-        nav.style.boxShadow = 'none';
-        nav.style.background = 'rgba(250,249,246,0.85)';
-      }
-    });
-
-    // ─── Typing Effect ───
-    const titles = ['BSCS Student', 'Web Developer', 'UI Enthusiast', 'Problem Solver'];
-    let titleIndex = 0, charIndex = 0, isDeleting = false;
-    const heroTitle = document.getElementById('heroTitle');
-
-    function typeEffect() {
-      const current = titles[titleIndex];
-      if (isDeleting) {
-        heroTitle.textContent = current.substring(0, charIndex--);
-        if (charIndex < 0) { isDeleting = false; titleIndex = (titleIndex + 1) % titles.length; setTimeout(typeEffect, 500); return; }
-      } else {
-        heroTitle.textContent = current.substring(0, charIndex++);
-        if (charIndex > current.length) { isDeleting = true; setTimeout(typeEffect, 2000); return; }
-      }
-      setTimeout(typeEffect, isDeleting ? 40 : 80);
-    }
-    typeEffect();
-
-    // ─── GSAP Animations ───
-    gsap.registerPlugin(ScrollTrigger);
-
-    // Hero entrance
-    gsap.from('#heroTag', { y: 30, opacity: 0, duration: 0.8, delay: 0.2 });
-    gsap.from('#heroName', { y: 40, opacity: 0, duration: 1, delay: 0.4 });
-    gsap.from('#heroTitle', { y: 30, opacity: 0, duration: 0.8, delay: 0.7 });
-    gsap.from('#heroDesc', { y: 30, opacity: 0, duration: 0.8, delay: 0.9 });
-    gsap.from('#heroBtns', { y: 30, opacity: 0, duration: 0.8, delay: 1.1 });
-    gsap.from('#heroSocials', { y: 20, opacity: 0, duration: 0.8, delay: 1.3 });
-    gsap.from('#heroVisual',{y:40,opacity:0,duration:1,delay:.5,ease:'power3.out'});
-gsap.to('.code-line',{opacity:1,x:0,duration:.4,stagger:.15,delay:1.2,ease:'power2.out'});
-
-    // Section reveals
-    document.querySelectorAll('.section-reveal').forEach(el => {
-      gsap.to(el, {
-        y: 0, opacity: 1, duration: 0.9, ease: 'power3.out',
-        scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' }
-      });
-    });
-
-    // Skill bars animation
-    document.querySelectorAll('.skill-bar-fill').forEach(bar => {
-      const w = bar.getAttribute('data-width');
-      ScrollTrigger.create({
-        trigger: bar,
-        start: 'top 90%',
-        onEnter: () => { bar.style.width = w + '%'; }
-      });
-    });
-
-    
-  </script>
-
+<script>
+lucide.createIcons();
+const menuBtn=document.getElementById('menuBtn'),mobileMenu=document.getElementById('mobileMenu');
+menuBtn.addEventListener('click',()=>mobileMenu.classList.toggle('hidden'));
+document.querySelectorAll('.mobile-link').forEach(l=>l.addEventListener('click',()=>mobileMenu.classList.add('hidden')));
+window.addEventListener('scroll',()=>{const n=document.getElementById('navbar');if(window.scrollY>50){n.style.boxShadow='0 4px 30px rgba(201,168,124,0.08)';n.style.background='rgba(250,249,246,0.95)'}else{n.style.boxShadow='none';n.style.background='rgba(250,249,246,0.85)'}});
+const titles=['UI/UX Designer','Figma Enthusiast','BSCS Student','Design Thinker'];let ti=0,ci=0,del=false;const ht=document.getElementById('heroTitle');
+function typeE(){const c=titles[ti];if(del){ht.textContent=c.substring(0,ci--);if(ci<0){del=false;ti=(ti+1)%titles.length;setTimeout(typeE,500);return}}else{ht.textContent=c.substring(0,ci++);if(ci>c.length){del=true;setTimeout(typeE,2000);return}}setTimeout(typeE,del?40:80)}typeE();
+gsap.registerPlugin(ScrollTrigger);
+gsap.from('#heroTag',{y:30,opacity:0,duration:.8,delay:.2});
+gsap.from('#heroName',{y:40,opacity:0,duration:1,delay:.4});
+gsap.from('#heroTitle',{y:30,opacity:0,duration:.8,delay:.7});
+gsap.from('#heroDesc',{y:30,opacity:0,duration:.8,delay:.9});
+gsap.from('#heroBtns',{y:30,opacity:0,duration:.8,delay:1.1});
+gsap.from('#heroSocials',{y:20,opacity:0,duration:.8,delay:1.3});
+gsap.from('#heroVisual',{y:40,opacity:0,duration:1,delay:.5,ease:'power3.out'});
+document.querySelectorAll('.section-reveal').forEach(el=>{gsap.to(el,{y:0,opacity:1,duration:.9,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 85%',toggleActions:'play none none none'}})});
+document.querySelectorAll('.skill-bar-fill').forEach(b=>{const w=b.getAttribute('data-width');ScrollTrigger.create({trigger:b,start:'top 90%',onEnter:()=>{b.style.width=w+'%'}})});
+</script>
 </body>
 </html>
